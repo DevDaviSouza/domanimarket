@@ -1,7 +1,15 @@
-import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
+import type { Metadata } from "next";
 import Header from "./components/header";
+
+export const metadata: Metadata = {
+  title: "Domani Market",
+  description: "Loja de produtos variados",
+  icons: {
+    icon: "/favicon.png",
+    
+  },
+}
 
 export default function RootLayout({
   children,
