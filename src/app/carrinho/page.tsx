@@ -3,7 +3,7 @@ import Image from "next/image";
 
 export default function Carrinho() {
   return (
-    <div className="flex flex-col items-center lg:flex-row justify-center gap-y-7 px-48 py-10 lg:space-x-5">
+    <div className="flex flex-col items-center lg:flex-row justify-center gap-y-7  py-10 lg:space-x-5">
       <div className="flex flex-col lg:w-3/5 p-4 space-y-6 bg-neutral-200 rounded-2xl items-center lg:items-start text-[13px] lg:text-base">
         <table  className="lg:w-full text-center items-center justify-center gap-5 w-72">
           <thead className="border-b-2 border-neutral-400">

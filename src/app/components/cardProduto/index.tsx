@@ -1,12 +1,19 @@
 import Image from "next/image";
 import BotaoPadrao from "../botaoPadrao";
 
-export default function CardProduto () {
+type CardProdutoProps = {
+  id: number;
+  nome: string;
+  preco: number;
+  imagem: string;
+};
+
+export default function CardProduto ({CardProdutoProps}: {CardProdutoProps: CardProdutoProps}) {
   return(
     <div className="flex flex-col items-center justify-center bg-white p-4 rounded-3xl shadow-[7px_7px_10px_rgba(0,0,0,0.7)] gap-1" >
-      <Image src="/produtoTeste.jpg" alt="Produto" width={100} height={100} />
-      <h2 className=" text-2xl font-medium">Produto</h2>
-      <span className="flex flex-row gap-1 text-xl">R$: <h3>200,00</h3></span>
+      <Image className="w-20 h-28" src={CardProdutoProps.imagem} alt="Produto" width={80} height={80} />
+      {<h2 className=" text-2xl font-medium">{CardProdutoProps.nome.length > 20 ? CardProdutoProps.nome.slice(0,20) + "..." : CardProdutoProps.nome }</h2>}
+      <span className="flex flex-row gap-1 text-xl">R$: <h3>R$: {CardProdutoProps.preco}</h3></span>
       <BotaoPadrao colorButton="bg-orange-700" text="Adicionar ao carrinho" />
     </div>
   )
