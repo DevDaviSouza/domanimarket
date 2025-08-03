@@ -1,5 +1,5 @@
 import CardProduto from "./components/cardProduto";
-import {Api, ProdutoProps} from "./service/api";
+import {Api, ProdutoProps} from "./services/api";
 
 
 export default async function Home() {
