@@ -3,7 +3,8 @@ import {Api, ProdutoProps} from "./service/api";
 
 
 export default async function Home() {
-  
+
+  // salvar os produtos da API em um array
   const data: ProdutoProps[] = await Api();
   
   return (
@@ -14,6 +15,8 @@ export default async function Home() {
         
       <section className="grid sm:grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-20">
         {
+          // mapear os produtos e renderizar o componente CardProduto
+          // passando as props necessárias
           data.map(produto => (
             <CardProduto 
               CardProdutoProps={{
