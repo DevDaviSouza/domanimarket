@@ -7,7 +7,7 @@ export default function CardProduto () {
       <Image src="/produtoTeste.jpg" alt="Produto" width={100} height={100} />
       <h2 className=" text-2xl font-medium">Produto</h2>
       <span className="flex flex-row gap-1 text-xl">R$: <h3>200,00</h3></span>
-      <BotaoPadrao colorButton="orange-700" text="Adicionar ao carrinho" />
+      <BotaoPadrao colorButton="bg-orange-700" text="Adicionar ao carrinho" />
     </div>
   )
 }
