@@ -5,6 +5,7 @@ import toasts from "../utils/toastify";
 import { toast } from "react-toastify";
 import Toasts from "../utils/toastify";
 
+// Define o tipo do contexto do carrinho
 type CarrinhoContextType = {
   itensCarrinho: any[];
   adicionarItem: (item: any) => void;
@@ -18,14 +19,16 @@ type CarrinhoContextType = {
   quantidadeTotal: number;
 }
 
-  const toastsInstance = new Toasts();
+// Cria uma instância de Toasts para uso no contexto
+const toastsInstance = new Toasts();
 
+// Cria o contexto do carrinho
 const CarrinhoContext = createContext<CarrinhoContextType | undefined>(undefined);
 
 export function CarrinhoProvider({ children }: { children: React.ReactNode }) {
   const [itensCarrinho, setItensCarrinho] = useState<CartItem[]>([]);
 
-
+  // Carrega os itens do carrinho do localStorage quando o componente é montado
     useEffect(() => {
       const storageCarrinho = localStorage.getItem("carrinho");
       if (storageCarrinho) {
@@ -34,13 +37,13 @@ export function CarrinhoProvider({ children }: { children: React.ReactNode }) {
       
     } , []);
 
+  // Salva os itens do carrinho no localStorage sempre que itensCarrinho mudar
     useEffect(() => {
       localStorage.setItem("carrinho", JSON.stringify(itensCarrinho));
       console.log(itensCarrinho);
     }, [itensCarrinho]);
 
-
-
+  // Função para adicionar um item ao carrinho
   const adicionarItem = (item: CartItem) => { 
     setItensCarrinho((prevItems: CartItem[]) => {
       const itemExistente = prevItems.find((i) => i.id === item.id);
@@ -53,6 +56,8 @@ export function CarrinhoProvider({ children }: { children: React.ReactNode }) {
     });
   };
 
+  // Funções para remover um item, remover quantidade de um item, adicionar quantidade de um item, limpar o carrinho e finalizar a compra
+  // Essas funções também utilizam a instância de Toasts para exibir mensagens ao usuário
   const removerItem = (id: string) => {
     setItensCarrinho((prevItems) => prevItems.filter((item) => item.id !== id));
     toastsInstance.itemRemovido();
@@ -99,10 +104,9 @@ export function CarrinhoProvider({ children }: { children: React.ReactNode }) {
     return
   };
 
+  // Calcula a quantidade total de itens no carrinho e o valor total
   const quantidadeItens = itensCarrinho.length;
-
   const quantidadeTotal = itensCarrinho.reduce((total, item) => total + item.quantidade, 0);
-
   const valorTotal: string = Number(itensCarrinho.reduce((total, item) => total + item.preco * item.quantidade, 0)).toFixed(2).replace('.', ',');
 
   return (

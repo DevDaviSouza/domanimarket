@@ -5,6 +5,11 @@ import { ProdutoProps } from "@/app/services/api";
 import { useEffect, useState } from "react";
 import CardProduto from "../cardProduto";
 
+// Componente ProdutosList que exibe uma lista de produtos filtrados por busca
+// Recebe os dados dos produtos como props
+// Utiliza o hook useDebounce para otimizar a busca
+// Exibe um input para busca e uma lista de produtos filtrados
+// Se não houver produtos filtrados, exibe uma mensagem informando que nenhum produto foi encontrado
 export default function ProdutosList(data : {data: ProdutoProps[]}) {
   
   const [produtosOriginais, setProdutosOriginais] = useState<ProdutoProps[]>(data.data);

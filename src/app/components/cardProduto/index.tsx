@@ -6,7 +6,7 @@ import { useContext } from "react";
 import { useCart } from "@/app/context/carrinhoContext";
 import alteraNome from "@/app/utils/alteraNome";
 
-
+// Define as propriedades do componente CardProduto
 type CardProdutoProps = {
   id: number;
   nome: string;
@@ -14,8 +14,8 @@ type CardProdutoProps = {
   imagem: string;
 };
 
+// Componente CardProduto que recebe as propriedades do produto
 export default function CardProduto ({CardProdutoProps}: {CardProdutoProps: CardProdutoProps}) {
-
   const { adicionarItem } = useCart();
 
   return(

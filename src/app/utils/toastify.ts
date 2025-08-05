@@ -1,11 +1,8 @@
 import { toast } from "react-toastify";
 
+// Classe Toasts para gerenciar notificações de toast
+// Contém métodos para exibir diferentes tipos de mensagens ao usuário
 export default class Toasts {
-  
-  itemAdicionado() {
-    toast.success("Item adicionado ao carrinho!");
-  }
-
   limparCarrinho() {
     toast.info("Carrinho limpo.");
   }

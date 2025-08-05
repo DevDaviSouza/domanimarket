@@ -1,12 +1,11 @@
 "use client";
-
-import Carrinho from "@/app/carrinho/page";
 import { useCart } from "@/app/context/carrinhoContext";
 import Image from "next/image"
 import Link from "next/link"
 
+// Componente de cabeçalho que exibe o logo e o carrinho
+// Inclui um badge que mostra a quantidade de itens no carrinho
 export default function Header() {
-
   const { quantidadeItens } = useCart();
 
   return(

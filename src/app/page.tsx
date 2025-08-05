@@ -5,8 +5,7 @@ import {Api, ProdutoProps} from "./services/api";
 import useDebounce from "./hooks/useDebounce";
 import ProdutosList from "./components/produtosList";
 
-
-
+// Componente principal da aplicação
 export default async function Home() {
   // salvar os produtos da API em um array
   const data: ProdutoProps[] = await Api();
