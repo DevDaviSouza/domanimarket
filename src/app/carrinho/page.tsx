@@ -1,7 +1,12 @@
+"use client";
+
 import BotaoPadrao from "../components/botaoPadrao";
 import Image from "next/image";
+import { useCart } from "../context/cartContext";
 
 export default function Carrinho() {
+  const { cartItems } = useCart();
+  
   return (
     <div className="flex flex-col items-center lg:flex-row justify-center gap-y-7  py-10 lg:space-x-5">
       <div className="flex flex-col lg:w-3/5 p-4 space-y-6 bg-neutral-200 rounded-2xl items-center lg:items-start text-[13px] lg:text-base shadow-[7px_7px_10px_rgba(0,0,0,0.7)]">
@@ -15,18 +20,24 @@ export default function Carrinho() {
             </tr>
           </thead>
           <tbody className="border-b-2 border-neutral-400 text-center">
-            <tr>
-              <td>produto1</td>
-              <td>R$ 200,00</td>
-              <td> 
-                <div className="flex flex-row text-center justify-center items-center gap-2"> 
-                  <Image src="square-minus.svg" alt="menos" width={20} height={20}/> 
-                    3 
-                  <Image src="square-plus.svg" alt="menos" width={20} height={20}/>
-                </div> 
-              </td>
-              <td className="flex items-center justify-center"> <Image src="trash.svg"  alt="" width={20} height={20} /></td>
-            </tr>
+            {
+              
+                cartItems.map((item) => (
+                  <tr key={item.id}>
+                    <td>{item.nome}</td>
+                    <td>R$ {item.preco}</td>
+                    <td> 
+                      <div className="flex flex-row text-center justify-center items-center gap-2"> 
+                        <Image src="square-minus.svg" alt="menos" width={20} height={20}/> 
+                          {item.quantidade} 
+                        <Image src="square-plus.svg" alt="mais" width={20} height={20}/>
+                      </div> 
+                    </td>
+                    <td className="flex items-center justify-center"> <Image src="trash.svg"  alt="excluir" width={20} height={20} /></td>
+                  </tr>
+                ))
+              
+            }
           </tbody>
         </table>
 

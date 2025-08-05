@@ -1,5 +1,7 @@
 import CardProduto from "./components/cardProduto";
+import { CartProvider } from "./context/cartContext";
 import {Api, ProdutoProps} from "./services/api";
+
 
 
 export default async function Home() {
@@ -32,5 +34,6 @@ export default async function Home() {
         }
       </section>
     </main>
+    
   );
 }
