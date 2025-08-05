@@ -33,8 +33,13 @@ export default function ProdutosList(data : {data: ProdutoProps[]}) {
         onChange={(e) => setBusca(e.target.value)}
         />
         
-      <section className="grid sm:grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-20">
+      <section className=" grid sm:grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-20">
         {
+          produtosFiltrados.length === 0 && busca.trim() !== "" ? (
+            // se não houver produtos filtrados e a busca não estiver vazia
+              <h2 className="text-2xl text-white text-center ">Nenhum produto encontrado</h2>
+          ) :
+
           // mapear os produtos e renderizar o componente CardProduto
           // passando as props necessárias
           produtosFiltrados.map(produto => (

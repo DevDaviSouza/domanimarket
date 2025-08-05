@@ -4,9 +4,10 @@ import BotaoPadrao from "../components/botaoPadrao";
 import Image from "next/image";
 import { useCart } from "../context/carrinhoContext";
 import alteraNome from "../utils/alteraNome";
+import { ToastContainer, toast } from "react-toastify";
 
 export default function Carrinho() {
-  const { itensCarrinho, removerItem, removerQuantidadeItem, adicionarQuantidadeItem, limparCarrinho, valorTotal, quantidadeTotal } = useCart();
+  const { itensCarrinho, removerItem, removerQuantidadeItem, adicionarQuantidadeItem, limparCarrinho, finalizarCompra, valorTotal, quantidadeTotal } = useCart();
   
   return (
     <div className="flex flex-col items-center lg:flex-row justify-center gap-y-7  py-10 lg:space-x-5">
@@ -50,8 +51,9 @@ export default function Carrinho() {
         <h3 className="text-xl lg:text-2xl">Total: R${valorTotal}</h3>
         {<h4 className="text">Qtd. Itens: {quantidadeTotal}</h4>}
 
-        <div onClick={limparCarrinho}> <BotaoPadrao colorButton="bg-green-800" fontColor="white" text="Confirmar compra" /> </div>
+        <div onClick={finalizarCompra} > <BotaoPadrao colorButton="bg-green-800" fontColor="white" text="Confirmar compra" /> </div>
       </div>
+    <ToastContainer />
     </div>
   );
 }

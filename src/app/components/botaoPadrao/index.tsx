@@ -7,7 +7,7 @@ type  BotaoPadraoProps = {
 export default function BotaoPadrao({ colorButton, fontColor, text }: BotaoPadraoProps) {
 
   return (
-    <button className={`p-2  ${colorButton} rounded-2xl transition-colors cursor-pointer max-w-48 text-white`}>
+    <button onClick={() => {}} className={`p-2  ${colorButton} rounded-2xl transition-colors cursor-pointer max-w-48 text-white `}>
       {text}
     </button>
   );
