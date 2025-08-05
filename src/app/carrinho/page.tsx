@@ -3,9 +3,10 @@
 import BotaoPadrao from "../components/botaoPadrao";
 import Image from "next/image";
 import { useCart } from "../context/cartContext";
+import alteraNome from "../utils/alteraNome";
 
 export default function Carrinho() {
-  const { cartItems } = useCart();
+  const { cartItems, removerItem, removerQuantidadeItem, adicionarQuantidadeItem, limparCarrinho, valorTotal, quantidadeTotal } = useCart();
   
   return (
     <div className="flex flex-col items-center lg:flex-row justify-center gap-y-7  py-10 lg:space-x-5">
@@ -24,16 +25,16 @@ export default function Carrinho() {
               
                 cartItems.map((item) => (
                   <tr key={item.id}>
-                    <td>{item.nome}</td>
+                    <td>{item.nome.length > 20 ? alteraNome(item.nome) : item.nome}</td>
                     <td>R$ {item.preco}</td>
                     <td> 
                       <div className="flex flex-row text-center justify-center items-center gap-2"> 
-                        <Image src="square-minus.svg" alt="menos" width={20} height={20}/> 
+                        <Image onClick={() => removerQuantidadeItem(item.id)} src="square-minus.svg" alt="menos" width={20} height={20}/> 
                           {item.quantidade} 
-                        <Image src="square-plus.svg" alt="mais" width={20} height={20}/>
+                        <Image onClick={() => adicionarQuantidadeItem(item.id)} src="square-plus.svg" alt="mais" width={20} height={20}/>
                       </div> 
                     </td>
-                    <td className="flex items-center justify-center"> <Image src="trash.svg"  alt="excluir" width={20} height={20} /></td>
+                    <td className="flex items-center justify-center"> <Image src="trash.svg"  alt="excluir" width={20} height={20} onClick={() => removerItem(item.id)} /></td>
                   </tr>
                 ))
               
@@ -41,15 +42,15 @@ export default function Carrinho() {
           </tbody>
         </table>
 
-        <BotaoPadrao colorButton="bg-red-800" fontColor="white" text="Limpar carrinho"/>
+        <div onClick={limparCarrinho}> <BotaoPadrao colorButton="bg-red-800" fontColor="white" text="Limpar carrinho"/> </div>
       </div>
       
       <div className="flex flex-col lg:w-1/5  px-7 py-4 space-y-2 bg-neutral-200 items-center text-center rounded-2xl w-72 shadow-[7px_7px_10px_rgba(0,0,0,0.7)]">
         <h2 className="text-2xl lg:text-3xl">Resumo</h2>
-        <h3 className="text-xl lg:text-2xl">Total: R$400,00</h3>
-        <h4 className="text">Qtd. Itens: 2</h4>
+        <h3 className="text-xl lg:text-2xl">Total: R${valorTotal}</h3>
+        {<h4 className="text">Qtd. Itens: {quantidadeTotal}</h4>}
 
-        <BotaoPadrao colorButton="bg-green-800" fontColor="white" text="Confirmar compra" />
+        <div onClick={limparCarrinho}> <BotaoPadrao colorButton="bg-green-800" fontColor="white" text="Confirmar compra" /> </div>
       </div>
     </div>
   );
