@@ -3,7 +3,7 @@
 import Image from "next/image";
 import BotaoPadrao from "../botaoPadrao";
 import { useContext } from "react";
-import { useCart } from "@/app/context/cartContext";
+import { useCart } from "@/app/context/carrinhoContext";
 import alteraNome from "@/app/utils/alteraNome";
 
 

@@ -2,11 +2,11 @@
 
 import BotaoPadrao from "../components/botaoPadrao";
 import Image from "next/image";
-import { useCart } from "../context/cartContext";
+import { useCart } from "../context/carrinhoContext";
 import alteraNome from "../utils/alteraNome";
 
 export default function Carrinho() {
-  const { cartItems, removerItem, removerQuantidadeItem, adicionarQuantidadeItem, limparCarrinho, valorTotal, quantidadeTotal } = useCart();
+  const { itensCarrinho, removerItem, removerQuantidadeItem, adicionarQuantidadeItem, limparCarrinho, valorTotal, quantidadeTotal } = useCart();
   
   return (
     <div className="flex flex-col items-center lg:flex-row justify-center gap-y-7  py-10 lg:space-x-5">
@@ -23,7 +23,7 @@ export default function Carrinho() {
           <tbody className="border-b-2 border-neutral-400 text-center">
             {
               
-                cartItems.map((item) => (
+                itensCarrinho.map((item) => (
                   <tr key={item.id}>
                     <td>{item.nome.length > 20 ? alteraNome(item.nome) : item.nome}</td>
                     <td>R$ {item.preco}</td>
